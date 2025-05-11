@@ -10,6 +10,7 @@ def validseq(sequence):
     
     return temp_seq
 
+
 #Count nucleotides frequence
 def count_nuc_frequence(sequence):
     sequence = validseq(sequence)
