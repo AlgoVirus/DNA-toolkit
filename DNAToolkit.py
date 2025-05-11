@@ -1,7 +1,6 @@
 #DNA Tool-kit file
 nucleotide = ['A', 'T', 'C', 'G']
 
-
 #Checking the sequence is a valid DNA sequence
 def validseq(sequence):
     temp_seq = sequence.upper()
@@ -23,7 +22,3 @@ def count_nuc_frequence(sequence):
     
     return count
 
-
-sequence = "ATCGATCGATCG"
-print(validseq(sequence))
-print(count_nuc_frequence(sequence))
