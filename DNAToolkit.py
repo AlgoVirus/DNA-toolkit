@@ -34,10 +34,9 @@ def transcription(sequence):
     RNA_sequence = sequence.replace('T', 'U')
     return RNA_sequence
 
-#Reverse complement:
+#reverse complement:
 def reverse_complement(sequence):
-    
-    #reverse_seq = sequence[::-1]
-    complement_seq = ''.join(DNA_reverse_Complement[nuc] for nuc in sequence[::-1])
+    reverse_seq =  sequence[::-1] 
+    complement_seq = ''.join(DNA_reverse_Complement[nuc] for nuc in reverse_seq[::-1])
     
     return complement_seq
