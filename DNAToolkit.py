@@ -23,3 +23,11 @@ def count_nuc_frequence(sequence):
     
     return count
 
+#transcription
+def transcription(sequence):
+    sequence = validseq(sequence)
+    if not sequence:
+        return "Invalid DNA sequence"
+    
+    RNA_sequence = sequence.replace('T', 'U')
+    return RNA_sequence
