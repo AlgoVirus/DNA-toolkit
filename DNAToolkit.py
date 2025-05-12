@@ -1,5 +1,7 @@
 #DNA Tool-kit file
 nucleotide = ['A', 'T', 'C', 'G']
+DNA_reverse_Complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+
 
 #Checking the sequence is a valid DNA sequence
 def validseq(sequence):
@@ -31,3 +33,11 @@ def transcription(sequence):
     
     RNA_sequence = sequence.replace('T', 'U')
     return RNA_sequence
+
+#Reverse complement:
+def reverse_complement(sequence):
+    
+    #reverse_seq = sequence[::-1]
+    complement_seq = ''.join(DNA_reverse_Complement[nuc] for nuc in sequence[::-1])
+    
+    return complement_seq
