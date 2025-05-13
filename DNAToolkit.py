@@ -52,3 +52,12 @@ def reverse_complement(sequence):
 def gc_content(sequence):
     gc_content = ((sequence.count('G') + sequence.count('C'))/len(sequence)*100)
     return gc_content
+
+# GC-content subset
+'''GC content in DNA/RNA sub-sequence length k, k=20 by default'''
+def gc_content_subsec(sequence, k=20):
+    res = []
+    for i in range(0, len(sequence) -k + 1, k):
+        subseq = sequence[i:i+k]
+        res.append(gc_content(subseq))
+    return res
