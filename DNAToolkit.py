@@ -2,6 +2,7 @@
 
 from structures import *
 
+sequence = "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG"
 
 nucleotide = ['A', 'T', 'C', 'G']
 DNA_reverse_Complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
@@ -19,9 +20,6 @@ def validseq(sequence):
 
 #Count nucleotides frequence
 def count_nuc_frequence(sequence):
-    sequence = validseq(sequence)
-    if not sequence:
-        return "Invalid DNA sequence"
     
     count = {}
     for nuc in nucleotide:
@@ -31,16 +29,15 @@ def count_nuc_frequence(sequence):
 
 #transcription
 def transcription(sequence):
-    sequence = validseq(sequence)
-    if not sequence:
-        return "Invalid DNA sequence"
     
     RNA_sequence = sequence.replace('T', 'U')
     return RNA_sequence
 
-#reverse complement:
-def reverse_complement(sequence):
-    reverse_seq =  sequence[::-1] 
-    complement_seq = ''.join(DNA_reverse_Complement[nuc] for nuc in reverse_seq[::-1])
+# complement sequence
+def complement(sequence):
+    complement_seq = ''
+    for nuc in sequence:
+        complement_seq += DNA_reverse_Complement[nuc]
     
     return complement_seq
+
