@@ -48,5 +48,7 @@ def reverse_complement(sequence):
 
     return reverse_seq
 
-print(sequence)
-print(reverse_complement(sequence))
+# GC-content calculator function
+def gc_content(sequence):
+    gc_content = ((sequence.count('G') + sequence.count('C'))/len(sequence)*100)
+    return gc_content
