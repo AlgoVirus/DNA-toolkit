@@ -61,3 +61,14 @@ def gc_content_subsec(sequence, k=20):
         subseq = sequence[i:i+k]
         res.append(gc_content(subseq))
     return res
+
+# Hamming distance function 
+def hamming_distance(seq1, seq2):
+    if len(seq1) != len(seq2):
+        raise ValueError("Sequences must be of the same length")
+    
+    distance = 0
+    for nuc1, nuc2 in zip(seq1, seq2):
+        if nuc1 != nuc2:
+            distance += 1
+    return distance
