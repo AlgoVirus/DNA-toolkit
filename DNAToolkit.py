@@ -63,6 +63,7 @@ def gc_content_subsec(sequence, k=20):
     return res
 
 # Hamming distance function 
+'''for counting point mutations between two sequences'''
 def hamming_distance(seq1, seq2):
     if len(seq1) != len(seq2):
         raise ValueError("Sequences must be of the same length")
@@ -72,3 +73,26 @@ def hamming_distance(seq1, seq2):
         if nuc1 != nuc2:
             distance += 1
     return distance
+
+#translation function
+def translation(sequence):
+    codon_table = {
+        'AUG': 'M', 'UUU': 'F', 'UUC': 'F', 'UUA': 'L', 'UUG': 'L',
+        'CUU': 'L', 'CUC': 'L', 'CUA': 'L', 'CUG': 'L', 'AUU': 'I',
+        'AUC': 'I', 'AUA': 'I', 'GUU': 'V', 'GUC': 'V', 'GUA': 'V',
+        'GUG': 'V', 'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+        'ACU': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T', 
+        # Add remaining codons...
+    }
+    
+    sequence = sequence.replace('T', 'U')  # Convert DNA to RNA
+    protein = ''
+    
+    protein_list = []
+    
+    for i in range(0, len(sequence) - 2, 3):
+        codon = sequence[i:i+3]
+        if codon in codon_table:
+            protein += codon_table[codon]
+    
+    return protein
