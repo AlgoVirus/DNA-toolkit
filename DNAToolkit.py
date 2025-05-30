@@ -77,12 +77,27 @@ def hamming_distance(seq1, seq2):
 #translation function
 def translation(sequence):
     codon_table = {
-        'AUG': 'M', 'UUU': 'F', 'UUC': 'F', 'UUA': 'L', 'UUG': 'L',
-        'CUU': 'L', 'CUC': 'L', 'CUA': 'L', 'CUG': 'L', 'AUU': 'I',
-        'AUC': 'I', 'AUA': 'I', 'GUU': 'V', 'GUC': 'V', 'GUA': 'V',
-        'GUG': 'V', 'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
-        'ACU': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T', 
-        # Add remaining codons...
+        'GCU': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
+        'CGU': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R', 'AGA': 'R', 'AGG': 'R',
+        'AAU': 'N', 'AAC': 'N',
+        'GAU': 'D', 'GAC': 'D',
+        'UGU': 'C', 'UGC': 'C',
+        'GAA': 'E', 'GAG': 'E',
+        'CAA': 'Q', 'CAG': 'Q',
+        'GGU': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G',
+        'CAU': 'H', 'CAC': 'H',
+        'AUU': 'I', 'AUC': 'I', 'AUA': 'I',
+        'UUA': 'L', 'UUG': 'L', 'CUU': 'L', 'CUC': 'L', 'CUA': 'L', 'CUG': 'L',
+        'AAA': 'K', 'AAG': 'K',
+        'AUG': 'M',  # Start codon
+        'UUU': 'F', 'UUC': 'F',
+        'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+        'UCU': 'S', 'UCC': 'S', 'UCA': 'S', 'UCG': 'S', 'AGU': 'S', 'AGC': 'S',
+        'ACU': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
+        'UGG': 'W',
+        'UAU': 'Y', 'UAC': 'Y',
+        'GUU': 'V', 'GUC': 'V', 'GUA': 'V', 'GUG': 'V',
+        'UAA': '', 'UAG': '', 'UGA': ''  # Stop codons
     }
     
     sequence = sequence.replace('T', 'U')  # Convert DNA to RNA
@@ -94,5 +109,7 @@ def translation(sequence):
         codon = sequence[i:i+3]
         if codon in codon_table:
             protein += codon_table[codon]
+            if codon_table[codon] == '':
+                break
     
     return protein
