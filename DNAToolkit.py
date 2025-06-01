@@ -114,6 +114,7 @@ def translation(sequence):
     
     return protein
 
+# Finding a Motif in a DNA sequence
 def find_substring_locations(s: str, t: str) -> list[int]:
     """
     Finds all locations of string t as a substring of string s.
