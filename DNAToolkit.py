@@ -103,8 +103,6 @@ def translation(sequence):
     sequence = sequence.replace('T', 'U')  # Convert DNA to RNA
     protein = ''
     
-    protein_list = []
-    
     for i in range(0, len(sequence) - 2, 3):
         codon = sequence[i:i+3]
         if codon in codon_table:
