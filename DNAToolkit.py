@@ -139,3 +139,26 @@ def find_substring_locations(s: str, t: str) -> list[int]:
             locations.append(i + 1)
 
     return locations
+
+def codon_usage(sequence):
+    """
+    Calculate the frequency of each codon in a given DNA sequence.
+
+    Args:
+        sequence: A valid DNA sequence.
+
+    Returns:
+        A dictionary with codons as keys and their frequencies as values.
+    """
+    sequence = transcription(sequence)  # Convert to RNA
+    codon_freq = {}
+    
+    for i in range(0, len(sequence) - 2, 3):
+        codon = sequence[i:i+3]
+        if len(codon) == 3:  # Ensure we have a complete codon
+            if codon in codon_freq:
+                codon_freq[codon] += 1
+            else:
+                codon_freq[codon] = 1
+    
+    return codon_freq
