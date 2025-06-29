@@ -202,3 +202,38 @@ def amino_acid_to_mRNA(amino_acid):
             raise ValueError(f"Unrecognized amino acid: {aa}")
     return ''.join(mrna)
 
+# mRNA to hnRNA with introns
+def generate_hnRNA_sequences(mrna, intron_positions, intron_patterns, output_file=None):
+    """
+    Generate multiple hnRNA sequences by inserting different intron patterns into mRNA.
+    
+    Parameters:
+    - mrna: mRNA sequence (string)
+    - intron_positions: List of positions (indices) to insert introns
+    - intron_patterns: List of lists, each containing intron sequences for one pattern
+    - output_file: (Optional) Filename to save FASTA sequences. If None, no file is saved.
+    
+    Returns:
+    - List of tuples: [(name, sequence), ...]
+    """
+    def add_introns(mrna, intron_positions, intron_sequences):
+        """Helper: Insert introns into mRNA at specified positions."""
+        if len(intron_positions) != len(intron_sequences):
+            raise ValueError("Number of intron positions must match number of intron sequences.")
+        sorted_pairs = sorted(zip(intron_positions, intron_sequences), key=lambda x: x[0], reverse=True)
+        hnRNA = mrna
+        for pos, intron in sorted_pairs:
+            hnRNA = hnRNA[:pos] + intron + hnRNA[pos:]
+        return hnRNA
+
+    hnRNA_sequences = []
+    for i, pattern in enumerate(intron_patterns):
+        hnRNA = add_introns(mrna, intron_positions, pattern)
+        hnRNA_sequences.append((f"hnRNA_pattern_{i+1}", hnRNA))
+
+    if output_file:
+        with open(output_file, "w") as f:
+            for name, seq in hnRNA_sequences:
+                f.write(f">{name}\n{seq}\n")
+
+    return hnRNA_sequences
