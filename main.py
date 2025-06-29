@@ -29,3 +29,15 @@ print(f"[10] codon usage frequency: {codon_usage(mRNA_sequence)}\n")
 
 amino_acid = "MVLLV"
 print(f"[11] Amino acid to mRNA: {amino_acid_to_mRNA(amino_acid)}\n")
+ 
+mRNA = "AUGGCCAUGCUUGAUAG"
+intron_positions = [3, 10]  # Insert introns after these indices (0-based)
+intron_patterns = [
+    ["GTACGTACGT", "TGCATGCATG"],  # Pattern 1
+    ["AAAAA", "TTTTT"],             # Pattern 2
+    ["GATCGATC", "CCTAGCTA"],       # Pattern 3
+    ["CACACACA", "TGTGTGTG"],       # Pattern 4
+    ["ATATATAT", "GCGCGCGC"]        # Pattern 5
+]
+
+print(f"[12] mRNA to hnRNA: {generate_hnRNA_sequences(mRNA_sequence, intron_positions, intron_patterns, output_file='hnRNA_sequences.fasta')}\n")
