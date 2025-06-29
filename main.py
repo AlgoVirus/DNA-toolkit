@@ -26,3 +26,6 @@ mRNA_sequence = transcription(sequence)
 print(f"[9] Protien sequence: {translation(mRNA_sequence)}\n")
 
 print(f"[10] codon usage frequency: {codon_usage(mRNA_sequence)}\n")
+
+amino_acid = "MVLLV"
+print(f"[11] Amino acid to mRNA: {amino_acid_to_mRNA(amino_acid)}\n")

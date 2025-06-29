@@ -162,3 +162,43 @@ def codon_usage(sequence):
                 codon_freq[codon] = 1
     
     return codon_freq
+
+# function to amino acid to mRNA:
+def amino_acid_to_mRNA(amino_acid):
+    # Example: Convert amino acid sequence to a possible mRNA sequence
+
+    # Minimal codon table (amino acid: [codon1, codon2, ...])
+    codon_table = {
+    'A': ['GCU', 'GCC', 'GCA', 'GCG'],
+    'R': ['CGU', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG'],
+    'N': ['AAU', 'AAC'],
+    'D': ['GAU', 'GAC'],
+    'C': ['UGU', 'UGC'],
+    'Q': ['CAA', 'CAG'],
+    'E': ['GAA', 'GAG'],
+    'G': ['GGU', 'GGC', 'GGA', 'GGG'],
+    'H': ['CAU', 'CAC'],
+    'I': ['AUU', 'AUC', 'AUA'],
+    'L': ['UUA', 'UUG', 'CUU', 'CUC', 'CUA', 'CUG'],
+    'K': ['AAA', 'AAG'],
+    'M': ['AUG'],
+    'F': ['UUU', 'UUC'],
+    'P': ['CCU', 'CCC', 'CCA', 'CCG'],
+    'S': ['UCU', 'UCC', 'UCA', 'UCG', 'AGU', 'AGC'],
+    'T': ['ACU', 'ACC', 'ACA', 'ACG'],
+    'W': ['UGG'],
+    'Y': ['UAU', 'UAC'],
+    'V': ['GUU', 'GUC', 'GUA', 'GUG'],
+    '*': ['UAA', 'UAG', 'UGA']  # Stop codons
+    }
+
+
+    mrna = []
+    for aa in amino_acid:
+        if aa in codon_table:
+            # Choose the first codon for each amino acid
+            mrna.append(codon_table[aa][0])
+        else:
+            raise ValueError(f"Unrecognized amino acid: {aa}")
+    return ''.join(mrna)
+
