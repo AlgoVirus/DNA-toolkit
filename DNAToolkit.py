@@ -237,3 +237,33 @@ def generate_hnRNA_sequences(mrna, intron_positions, intron_patterns, output_fil
                 f.write(f">{name}\n{seq}\n")
 
     return hnRNA_sequences
+
+# functuon for parse the PDB file
+def parse_pdb_file(pdb_file):
+    """
+    Parse a PDB file and extract atom information.
+    
+    Args:
+        pdb_file (str): Path to the PDB file.
+    
+    Returns:
+        list: A list of Atom objects containing atom information.
+    """
+    atoms = []
+    with open(pdb_file, 'r') as file:
+        for line in file:
+            if line.startswith("ATOM") or line.startswith("HETATM"):
+                atom = {
+                    "atom_serial": int(line[6:11].strip()),
+                    "atom_name": line[12:16].strip(),
+                    "residue_name": line[17:20].strip(),
+                    "chain_id": line[21].strip(),
+                    "residue_sequence_number": int(line[22:26].strip()),
+                    "x": float(line[30:38].strip()),
+                    "y": float(line[38:46].strip()),
+                    "z": float(line[46:54].strip()),
+                    "element": line[76:78].strip(),
+                    "occupancy": float(line[54:60].strip()),
+                }
+                atoms.append(atom)
+    return atoms

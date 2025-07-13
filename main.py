@@ -41,3 +41,6 @@ intron_patterns = [
 ]
 
 print(f"[12] mRNA to hnRNA: {generate_hnRNA_sequences(mRNA_sequence, intron_positions, intron_patterns, output_file='hnRNA_sequences.fasta')}\n")
+
+pdb_file = parse_pdb_file("C:\\Users\\Mahesh\\OneDrive\\Desktop\\pymol tutorial\\LasR ligand.pdb")
+print(f"[13] Parsed PDB file: {pdb_file}\n")
